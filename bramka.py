@@ -2,14 +2,19 @@ import serial
 import sys
 import binascii
 
-CAN_port = 'COM6'
+CAN_port = 'COM8'
 CAN_baudrate = '9600'
-SAT_port = 'COM7'
+SAT_port = 'COM9'
 SAT_baudrate = '9600'
-sat_read_command = b"FEFE00D7E2FE0D"
+sat_read_command =b"FEFE00D7E2FE0D"
+
 sat_start = b'FEFE'
 sat_stop = b'FE0D'
 
+def transform_data(data):
+    if(type(data) == type('String')):
+        data = bytearray(data,'ascii')
+    return data
 
 def open_serial(port, baudrate, parity, stop_bits, byte_size, timeout, description):
     ser = serial.Serial()
@@ -29,10 +34,12 @@ def open_serial(port, baudrate, parity, stop_bits, byte_size, timeout, descripti
     return(ser)
 
 def send_command_in_hex(ser, command):
-    text = ''
-    for c in command:
-        text = text + binascii.hexlify(c)
-    ser.write(text)
+    ser.write(command)
+    ser.write(binascii.a2b_uu('test')) # binascii.hexlify( 'BAM\1' )
+
+def read_incoming_command(ser):
+    serial.iser.read()
+
 
 def Initialization():
     a=1
@@ -43,17 +50,35 @@ def Initialization():
 
 def Main(ser_CAN, ser_SAT):
         a=1
-        ser_CAN.write(sat_read_command)
+        #ser_CAN.write(sat_read_command)
+        #send_command_in_hex(ser_CAN,sat_read_command)
+        a=b'BAM\1'
+       # b=b"\xA \xB"
+        print("{}".format(binascii.hexlify( a )))
+        #print("{}".format(binascii.hexlify( b)))
 
 
 if __name__ == '__main__':
     #inicjalizacja
-    ser = serial.Serial('COM6',9600)
+    '''
+    ser = serial.Serial(CAN_port,CAN_baudrate)
     ser.close()
     ser.open()
     ser.write(b"test")
     ser.close()
     ser_CAN, ser_SAT = Initialization()
+    '''
+    a=b'BAM\1'
+    b="string014a"
+    c=transform_data(a)
+    d=transform_data(b)
+    print("{} {} {} {}".format(a,b,c,d))
+    print(binascii.hexlify(c))
+    print(binascii.hexlify(d))
+    #print(binascii.unhexlify(d))
+    print(binascii.unhexlify(sat_read_command))
+
     #petla glowna
     while True:
-        Main(ser_CAN, ser_SAT)
+        #Main(ser_CAN, ser_SAT)
+        e=1
