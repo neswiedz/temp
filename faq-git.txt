@@ -1,0 +1,77 @@
+Z:/githubserver/CAN-BUTTON-git/
+
+Notes about GIT
+
+SHOW REMOTES
+You can also specify -v, which shows you the URLs that Git has stored for the shortname to be used when reading and writing to that remote:
+$ git remote -v
+origin https://github.com/schacon/ticgit (fetch)
+origin https://github.com/schacon/ticgit (push)
+
+ADDED REMOTE TO GIT
+$ git remote
+origin
+$ git remote add pb https://github.com/paulboone/ticgit
+$ git remote -v
+origin    https://github.com/schacon/ticgit (fetch)
+origin    https://github.com/schacon/ticgit (push)
+pb    https://github.com/paulboone/ticgit (fetch)
+pb    https://github.com/paulboone/ticgit (push)
+$ git fetch pb
+
+FETCHING (the same as pull but don't make merge; otherwords: pull = fetch + merge)
+$ git fetch [remote-name]
+
+PUSHING
+$ git push origin master
+
+RENAME REMOTE
+$ git remote rename pb paul
+$ git remote
+origin
+paul
+
+DELETE REMOTE
+$ git remote rm paul
+$ git remote
+origin
+
+
+-----------------------------------------------------------
+MANUAL
+1. stworzyc folder na serwerze (np. Z:/githubserver/CAN-RELAY-git)
+2. wewnątrz wykonac:
+git init --bare
+3. stworzyc folder lokalny (np. /d/git-Z/CAN-RELAY-git-na-Z)
+4. wewnatrz zrobic
+git init
+5. wewnatrz dodac polaczenie do repo serwera:
+git remote add origin Z:/githubserver/CAN-RELAY-git
+6. sprawdzic
+git remote -v
+origin  Z:/githubserver/CAN-RELAY-git (fetch)
+origin  Z:/githubserver/CAN-RELAY-git (push)
+
+7. git checkout master
+
+-----------------------------------------------------------
+cd /d/git-Z/CAN-BUTTON-git-na-Z  
+git remote -v
+$ origin  Z:/githubserver/CAN-BUTTON-git/ (fetch)
+$ origin  Z:/githubserver/CAN-BUTTON-git/ (push)
+
+-----------------------------------------------------------
+cd /d/git-Z/CAN-RS232-git-na-Z
+git remote -v
+$ origin  Z:/githubserver/CAN-RS232-git/ (fetch)
+$ origin  Z:/githubserver/CAN-RS232-git/ (push)
+
+-----------------------------------------------------------
+cd /d/git-Z/CAN-RELAY-git-na-Z
+git remote -v
+$ origin  Z:/githubserver/CAN-RELAY-git (fetch)
+$ origin  Z:/githubserver/CAN-RELAY-git (push)
+
+-----------------------------------------------------------
+
+
